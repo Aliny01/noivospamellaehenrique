@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lista de Presentes — Casamento de Pamella &amp; Henrique — 10 de Outubro de 2026, Uberlândia-MG" />
+  <title>Lista de Presentes · Pamella &amp; Henrique</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       VARIABLES & RESET
+    ============================================================ */
+    :root {
+      --pearl:      #FDFAF6;
+      --white:      #FFFFFF;
+      --gold:       #C9A96E;
+      --gold-dark:  #A8864A;
+      --gold-light: #E8D5A3;
+      --blush:      #FBEEEC;
+      --blush-dark: #E0A8A4;
+      --sage:       #B5C4B1;
+      --sage-dark:  #8FA88A;
+      --black:      #1A1A1A;
+      --gray:       #6B6B6B;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: var(--black);
+      background-color: var(--pearl);
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { text-decoration: none; color: inherit; }
+
+    /* ============================================================
+       TYPOGRAPHY HELPERS
+    ============================================================ */
+    .t-serif   { font-family: 'Cormorant Garamond', serif; }
+    .t-script  { font-family: 'Playfair Display', serif; font-style: italic; }
+    .t-sans    { font-family: 'Lato', sans-serif; }
+
+    /* ============================================================
+       ORNAMENTAL DIVIDER
+    ============================================================ */
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .75rem;
+      margin: 1.25rem auto;
+    }
+    .ornament-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+    .ornament-diamond {
+      width: 7px; height: 7px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .ornament-sm { max-width: 220px; }
+    .ornament-md { max-width: 380px; }
+
+    /* ============================================================
+       SECTION HEADER
+    ============================================================ */
+    .section-header { text-align: center; margin-bottom: 4rem; }
+
+    .eyebrow {
+      font-family: 'Lato', sans-serif;
+      font-size: .72rem;
+      letter-spacing: .45em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: .6rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 600;
+      color: var(--black);
+      line-height: 1.1;
+      margin-bottom: .4rem;
+    }
+
+    .section-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(.95rem, 1.8vw, 1.15rem);
+      color: var(--gold-dark);
+      margin-top: .75rem;
+    }
+
+    /* ============================================================
+       FADE-IN ANIMATIONS (Intersection Observer)
+    ============================================================ */
+    .reveal       { opacity: 0; transform: translateY(32px); transition: opacity .85s ease, transform .85s ease; }
+    .reveal-left  { opacity: 0; transform: translateX(-32px); transition: opacity .85s ease, transform .85s ease; }
+    .reveal-right { opacity: 0; transform: translateX(32px); transition: opacity .85s ease, transform .85s ease; }
+    .reveal.visible, .reveal-left.visible, .reveal-right.visible {
+      opacity: 1; transform: translate(0);
+    }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1.4rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background .4s ease, padding .4s ease, box-shadow .4s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(253, 250, 246, .96);
+      padding: .9rem 2.5rem;
+      box-shadow: 0 2px 24px rgba(201,169,110,.18);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-logo img {
+      height: 42px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2.2rem;
+    }
+    .nav-links a {
+      font-family: 'Lato', sans-serif;
+      font-size: .78rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--black);
+      transition: color .3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a.active { color: var(--gold); }
+
+    /* Hamburger */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1001;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--black);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile nav overlay */
+    @media (max-width: 768px) {
+      .nav-toggle { display: flex; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(253,250,246,.98);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+        z-index: 1000;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a {
+        color: var(--black) !important;
+        font-size: 1.1rem;
+      }
+    }
+
+    /* ============================================================
+       PAGE HEADER
+    ============================================================ */
+    #page-header {
+      padding: 9rem 2rem 2rem;
+      background:
+        radial-gradient(ellipse at center, var(--white) 0%, var(--pearl) 65%, var(--blush) 100%);
+      text-align: center;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      font-family: 'Lato', sans-serif;
+      font-size: .74rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      transition: color .3s;
+    }
+    .back-link:hover { color: var(--gold); }
+
+    /* ============================================================
+       GIFTS
+    ============================================================ */
+    #gifts {
+      padding: 2rem 2rem 6rem;
+      background: var(--pearl);
+    }
+
+    .gifts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 1.5rem;
+      max-width: 1060px;
+      margin: 0 auto;
+    }
+
+    .gift-card {
+      background: #fff;
+      border: 1px solid rgba(201,169,110,.18);
+      border-radius: 4px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .gift-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--blush), var(--gold), var(--blush));
+      transform: scaleX(0);
+      transition: transform .35s;
+    }
+    .gift-card:hover { transform: translateY(-5px); box-shadow: 0 14px 42px rgba(0,0,0,.09); border-color: rgba(201,169,110,.35); }
+    .gift-card:hover::before { transform: scaleX(1); }
+
+    .gift-icon { font-size: 2.4rem; margin-bottom: .85rem; }
+    .gift-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: .3rem;
+    }
+    .gift-desc {
+      font-size: .83rem;
+      color: var(--gray);
+      line-height: 1.5;
+      margin-bottom: 1.3rem;
+    }
+    .btn-gift {
+      padding: .55rem 1.4rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      background: none;
+      border-radius: 30px;
+      font-family: 'Lato', sans-serif;
+      font-size: .74rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all .3s;
+    }
+    .btn-gift:hover { background: var(--gold); color: #fff; }
+    .btn-gift.chosen { background: var(--sage); border-color: var(--sage); color: #fff; cursor: default; }
+
+    /* Gift modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,5,3,.6);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      backdrop-filter: blur(4px);
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: #fff;
+      border: 1px solid rgba(201,169,110,.3);
+      border-radius: 4px;
+      padding: 2.5rem 2rem;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,.2);
+      animation: modalIn .4s ease;
+    }
+    @keyframes modalIn { from { opacity: 0; transform: scale(.94) translateY(20px); } to { opacity: 1; transform: none; } }
+    .modal-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .modal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      margin-bottom: .6rem;
+    }
+    .modal-text {
+      font-size: .9rem;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 1.6rem;
+    }
+    .modal-close { cursor: pointer; }
+
+    .btn-gold {
+      display: inline-block;
+      padding: .85rem 2.2rem;
+      border: 1px solid var(--gold);
+      background: var(--gold);
+      color: #fff;
+      border-radius: 30px;
+      font-family: 'Lato', sans-serif;
+      font-size: .78rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all .3s;
+    }
+    .btn-gold:hover { background: var(--gold-dark); border-color: var(--gold-dark); }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: var(--black);
+      color: var(--pearl);
+      padding: 4.5rem 2rem 3rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      height: 80px;
+      margin: 0 auto 1.2rem;
+    }
+
+    .footer-names {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      margin-bottom: .35rem;
+    }
+    .footer-date {
+      font-family: 'Lato', sans-serif;
+      font-size: .72rem;
+      letter-spacing: .48em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+    .footer-verse {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: .88rem;
+      color: rgba(253,250,246,.45);
+      max-width: 420px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    .footer-verse em {
+      display: block;
+      margin-top: .5rem;
+      font-size: .72rem;
+      letter-spacing: .2em;
+      font-style: normal;
+      font-family: 'Lato', sans-serif;
+      color: rgba(201,169,110,.5);
+      text-transform: uppercase;
+    }
+    .footer-copy {
+      margin-top: 2.5rem;
+      font-size: .7rem;
+      color: rgba(253,250,246,.2);
+      letter-spacing: .08em;
+    }
+
+    /* General container */
+    .container { max-width: 1060px; margin: 0 auto; }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <nav id="navbar" role="navigation" aria-label="Menu principal">
+    <a href="index.html" class="nav-logo" aria-label="Pamella e Henrique — início">
+      <img src="img/preto.png" alt="Monograma PH" />
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#our-story"  onclick="closeMenu()">Nossa História</a></li>
+      <li><a href="index.html#ceremony"   onclick="closeMenu()">Cerimônia</a></li>
+      <li><a href="index.html#reception"  onclick="closeMenu()">Recepção</a></li>
+      <li><a href="index.html#rsvp"       onclick="closeMenu()">Presença</a></li>
+      <li><a href="presentes.html" class="active">Presentes</a></li>
+      <li><a href="index.html#messages"   onclick="closeMenu()">Recados</a></li>
+    </ul>
+
+    <button class="nav-toggle" id="navToggle" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ============================================================
+       PAGE HEADER
+  ============================================================ -->
+  <section id="page-header" aria-label="Lista de Presentes">
+    <a href="index.html" class="back-link reveal">← Voltar para o site</a>
+    <div class="section-header reveal" style="margin-bottom:0">
+      <span class="eyebrow">Capítulo V</span>
+      <h1 class="section-title">Lista de Presentes</h1>
+      <div class="ornament ornament-md">
+        <div class="ornament-line"></div>
+        <div class="ornament-diamond"></div>
+        <div class="ornament-line"></div>
+      </div>
+      <p class="section-sub">Cada presente é um gesto de amor em nosso novo lar</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GIFTS
+  ============================================================ -->
+  <section id="gifts">
+    <div class="container">
+
+      <div class="gifts-grid">
+        <div class="gift-card reveal">
+          <div class="gift-icon">🍽️</div>
+          <div class="gift-name">Aparelho de Jantar</div>
+          <p class="gift-desc">Para receber amigos e família com estilo e carinho</p>
+          <button class="btn-gift" onclick="openGift('Aparelho de Jantar', this)">Presentear</button>
+        </div>
+        <div class="gift-card reveal">
+          <div class="gift-icon">🛋️</div>
+          <div class="gift-name">Sofá para a Sala</div>
+          <p class="gift-desc">Conforto e aconchego para o novo lar do casal</p>
+          <button class="btn-gift" onclick="openGift('Sofá para a Sala', this)">Presentear</button>
+        </div>
+        <div class="gift-card reveal">
+          <div class="gift-icon">🍳</div>
+          <div class="gift-name">Kit de Cozinha</div>
+          <p class="gift-desc">Panelas, utensílios e tudo para cozinhar a dois</p>
+          <button class="btn-gift" onclick="openGift('Kit de Cozinha', this)">Presentear</button>
+        </div>
+        <div class="gift-card reveal">
+          <div class="gift-icon">✈️</div>
+          <div class="gift-name">Lua de Mel</div>
+          <p class="gift-desc">Contribua para a viagem dos sonhos do casal</p>
+          <button class="btn-gift" onclick="openGift('Lua de Mel', this)">Presentear</button>
+        </div>
+        <div class="gift-card reveal">
+          <div class="gift-icon">🛏️</div>
+          <div class="gift-name">Enxoval de Cama</div>
+          <p class="gift-desc">Lençóis, travesseiros e cobertores de qualidade</p>
+          <button class="btn-gift" onclick="openGift('Enxoval de Cama', this)">Presentear</button>
+        </div>
+        <div class="gift-card reveal">
+          <div class="gift-icon">☕</div>
+          <div class="gift-name">Cafeteira Premium</div>
+          <p class="gift-desc">Para os momentos especiais de café a dois</p>
+          <button class="btn-gift" onclick="openGift('Cafeteira Premium', this)">Presentear</button>
+        </div>
+        <div class="gift-card reveal">
+          <div class="gift-icon">📺</div>
+          <div class="gift-name">Smart TV</div>
+          <p class="gift-desc">Para assistir ao Mengão juntos com toda a família</p>
+          <button class="btn-gift" onclick="openGift('Smart TV', this)">Presentear</button>
+        </div>
+        <div class="gift-card reveal">
+          <div class="gift-icon">🪴</div>
+          <div class="gift-name">Decoração do Lar</div>
+          <p class="gift-desc">Quadros, vasos e detalhes que transformam a casa em lar</p>
+          <button class="btn-gift" onclick="openGift('Decoração do Lar', this)">Presentear</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Gift modal -->
+  <div class="modal-overlay" id="gift-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onclick="closeGiftModal(event)">
+    <div class="modal-box">
+      <div class="modal-icon">🎁</div>
+      <h3 class="modal-title" id="modal-title">Que generosidade!</h3>
+      <p class="modal-text" id="modal-text"></p>
+      <div class="ornament ornament-sm" style="margin:1rem auto"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line"></div></div>
+      <button class="btn-gold modal-close" onclick="closeGiftModal()">Fechar</button>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer role="contentinfo">
+    <div class="ornament ornament-sm" style="margin-bottom:2rem">
+      <div class="ornament-line" style="background:linear-gradient(to right,transparent,rgba(201,169,110,.3),transparent)"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line" style="background:linear-gradient(to right,transparent,rgba(201,169,110,.3),transparent)"></div>
+    </div>
+
+    <img src="img/dourado.png" alt="Monograma PH" class="footer-logo" />
+    <p class="footer-names">Pamella &amp; Henrique</p>
+    <p class="footer-date">10 &nbsp;·&nbsp; 10 &nbsp;·&nbsp; 2026 &nbsp;·&nbsp; Uberlândia, MG</p>
+
+    <div class="ornament ornament-sm" style="margin:1.5rem auto">
+      <div class="ornament-line" style="background:linear-gradient(to right,transparent,rgba(201,169,110,.25),transparent)"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line" style="background:linear-gradient(to right,transparent,rgba(201,169,110,.25),transparent)"></div>
+    </div>
+
+    <p class="footer-verse">
+      "Porque eu sei os planos que tenho para vocês, diz o Senhor,
+      planos de fazê-los prosperar e não de causar dano,
+      planos de dar a vocês esperança e um futuro."
+      <em>— Jeremias 29:11</em>
+    </p>
+
+    <p class="footer-copy">Feito com amor &nbsp;·&nbsp; Pamella &amp; Henrique &nbsp;·&nbsp; 2026</p>
+  </footer>
+
+  <script>
+    /* ---- Navbar ---- */
+    const navbar = document.getElementById('navbar');
+    const navToggle = document.getElementById('navToggle');
+    const navLinks  = document.getElementById('navLinks');
+
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    function toggleMenu() {
+      const open = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', open);
+    }
+
+    function closeMenu() {
+      navLinks.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    /* ---- Intersection Observer (Reveal animations) ---- */
+    const revealItems = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.13, rootMargin: '0px 0px -40px 0px' });
+    revealItems.forEach((el, i) => {
+      el.style.transitionDelay = (i % 4 * 0.1) + 's';
+      io.observe(el);
+    });
+
+    /* ---- Gifts ---- */
+    function openGift(name, btn) {
+      document.getElementById('modal-text').textContent =
+        'Você escolheu presentear o casal com "' + name + '". ' +
+        'Entre em contato com a família para combinar os detalhes e a forma de envio. Obrigado pelo carinho! 🎁';
+      document.getElementById('gift-modal').classList.add('open');
+      btn.classList.add('chosen');
+      btn.textContent = '✓ Escolhido';
+      btn.onclick = null;
+    }
+
+    function closeGiftModal(e) {
+      if (!e || e.target === document.getElementById('gift-modal') || e.currentTarget.classList.contains('modal-close')) {
+        document.getElementById('gift-modal').classList.remove('open');
+      }
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeGiftModal({ target: document.getElementById('gift-modal') });
+    });
+  </script>
+
+</body>
+</html>
