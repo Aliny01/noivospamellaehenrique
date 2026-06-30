@@ -238,11 +238,25 @@
       background: #fff;
       border: 1px solid rgba(201,169,110,.18);
       border-radius: 4px;
-      padding: 2rem 1.5rem;
+      padding: 0 0 1.4rem;
       text-align: center;
       position: relative;
       overflow: hidden;
       transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .gift-img {
+      width: 100%;
+      height: 160px;
+      background: var(--pearl);
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+    .gift-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      padding: .5rem;
     }
     .gift-card::before {
       content: '';
@@ -256,18 +270,23 @@
     .gift-card:hover { transform: translateY(-5px); box-shadow: 0 14px 42px rgba(0,0,0,.09); border-color: rgba(201,169,110,.35); }
     .gift-card:hover::before { transform: scaleX(1); }
 
-    .gift-icon { font-size: 2.4rem; margin-bottom: .85rem; }
     .gift-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       font-weight: 600;
-      margin-bottom: .3rem;
+      margin: 0 1rem .3rem;
+      min-height: 2.4em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .gift-desc {
-      font-size: .83rem;
-      color: var(--gray);
-      line-height: 1.5;
-      margin-bottom: 1.3rem;
+    .gift-price {
+      font-family: 'Lato', sans-serif;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .03em;
+      color: var(--gold-dark);
+      margin-bottom: 1rem;
     }
     .btn-gift {
       padding: .55rem 1.4rem;
@@ -286,44 +305,132 @@
     .btn-gift.chosen { background: var(--sage); border-color: var(--sage); color: #fff; cursor: default; }
 
     /* Gift modal */
-    .modal-overlay {
+    .gift-modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(10,5,3,.6);
+      background: rgba(10,5,3,.55);
       z-index: 2000;
       align-items: center;
       justify-content: center;
       padding: 1.5rem;
       backdrop-filter: blur(4px);
     }
-    .modal-overlay.open { display: flex; }
-    .modal-box {
+    .gift-modal-overlay.open { display: flex; }
+
+    .gift-modal-box {
       background: #fff;
       border: 1px solid rgba(201,169,110,.3);
-      border-radius: 4px;
-      padding: 2.5rem 2rem;
-      max-width: 420px;
+      border-radius: 6px;
+      padding: 0;
+      max-width: 460px;
       width: 100%;
-      text-align: center;
       box-shadow: 0 20px 60px rgba(0,0,0,.2);
-      animation: modalIn .4s ease;
+      animation: modalIn .35s ease;
+      overflow: hidden;
+      max-height: 92vh;
+      overflow-y: auto;
     }
-    @keyframes modalIn { from { opacity: 0; transform: scale(.94) translateY(20px); } to { opacity: 1; transform: none; } }
-    .modal-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-    .modal-title {
+    @keyframes modalIn { from { opacity: 0; transform: scale(.94) translateY(16px); } to { opacity: 1; transform: none; } }
+
+    .gm-img {
+      width: 100%;
+      height: 180px;
+      background: var(--pearl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gm-img img { height: 100%; width: 100%; object-fit: contain; padding: 1rem; }
+
+    .gm-body { padding: 1.6rem 2rem 2rem; }
+
+    .gm-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.7rem;
+      font-size: 1.5rem;
       font-weight: 600;
-      margin-bottom: .6rem;
+      text-align: center;
+      margin-bottom: .2rem;
     }
-    .modal-text {
-      font-size: .9rem;
+    .gm-price {
+      font-family: 'Lato', sans-serif;
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--gold-dark);
+      text-align: center;
+      margin-bottom: 1.4rem;
+    }
+    .gm-form { display: flex; flex-direction: column; gap: .85rem; }
+    .gm-form label {
+      font-family: 'Lato', sans-serif;
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
       color: var(--gray);
-      line-height: 1.7;
-      margin-bottom: 1.6rem;
+      display: block;
+      margin-bottom: .3rem;
     }
-    .modal-close { cursor: pointer; }
+    .gm-form input, .gm-form textarea {
+      width: 100%;
+      padding: .7rem 1rem;
+      border: 1px solid rgba(201,169,110,.35);
+      border-radius: 4px;
+      font-family: 'Lato', sans-serif;
+      font-size: .9rem;
+      background: var(--pearl);
+      color: var(--black);
+      transition: border-color .25s;
+      resize: vertical;
+    }
+    .gm-form input:focus, .gm-form textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+    .gm-form textarea { min-height: 80px; }
+    .gm-actions {
+      display: flex;
+      gap: .8rem;
+      margin-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .btn-cancel {
+      flex: 1;
+      padding: .75rem 1rem;
+      border: 1px solid rgba(201,169,110,.4);
+      background: none;
+      border-radius: 30px;
+      font-family: 'Lato', sans-serif;
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      cursor: pointer;
+      transition: all .25s;
+    }
+    .btn-cancel:hover { border-color: var(--gray); }
+    .btn-submit-gift {
+      flex: 2;
+      padding: .75rem 1rem;
+      border: 1px solid var(--gold);
+      background: var(--gold);
+      border-radius: 30px;
+      font-family: 'Lato', sans-serif;
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #fff;
+      cursor: pointer;
+      transition: all .25s;
+    }
+    .btn-submit-gift:hover { background: var(--gold-dark); border-color: var(--gold-dark); }
+    .btn-submit-gift:disabled { opacity: .6; cursor: default; }
+    .gm-feedback {
+      font-size: .82rem;
+      text-align: center;
+      margin-top: .8rem;
+      color: var(--gray);
+      display: none;
+    }
 
     .btn-gold {
       display: inline-block;
@@ -448,68 +555,42 @@
   <section id="gifts">
     <div class="container">
 
-      <div class="gifts-grid">
-        <div class="gift-card reveal">
-          <div class="gift-icon">🍽️</div>
-          <div class="gift-name">Aparelho de Jantar</div>
-          <p class="gift-desc">Para receber amigos e família com estilo e carinho</p>
-          <button class="btn-gift" onclick="openGift('Aparelho de Jantar', this)">Presentear</button>
-        </div>
-        <div class="gift-card reveal">
-          <div class="gift-icon">🛋️</div>
-          <div class="gift-name">Sofá para a Sala</div>
-          <p class="gift-desc">Conforto e aconchego para o novo lar do casal</p>
-          <button class="btn-gift" onclick="openGift('Sofá para a Sala', this)">Presentear</button>
-        </div>
-        <div class="gift-card reveal">
-          <div class="gift-icon">🍳</div>
-          <div class="gift-name">Kit de Cozinha</div>
-          <p class="gift-desc">Panelas, utensílios e tudo para cozinhar a dois</p>
-          <button class="btn-gift" onclick="openGift('Kit de Cozinha', this)">Presentear</button>
-        </div>
-        <div class="gift-card reveal">
-          <div class="gift-icon">✈️</div>
-          <div class="gift-name">Lua de Mel</div>
-          <p class="gift-desc">Contribua para a viagem dos sonhos do casal</p>
-          <button class="btn-gift" onclick="openGift('Lua de Mel', this)">Presentear</button>
-        </div>
-        <div class="gift-card reveal">
-          <div class="gift-icon">🛏️</div>
-          <div class="gift-name">Enxoval de Cama</div>
-          <p class="gift-desc">Lençóis, travesseiros e cobertores de qualidade</p>
-          <button class="btn-gift" onclick="openGift('Enxoval de Cama', this)">Presentear</button>
-        </div>
-        <div class="gift-card reveal">
-          <div class="gift-icon">☕</div>
-          <div class="gift-name">Cafeteira Premium</div>
-          <p class="gift-desc">Para os momentos especiais de café a dois</p>
-          <button class="btn-gift" onclick="openGift('Cafeteira Premium', this)">Presentear</button>
-        </div>
-        <div class="gift-card reveal">
-          <div class="gift-icon">📺</div>
-          <div class="gift-name">Smart TV</div>
-          <p class="gift-desc">Para assistir ao Mengão juntos com toda a família</p>
-          <button class="btn-gift" onclick="openGift('Smart TV', this)">Presentear</button>
-        </div>
-        <div class="gift-card reveal">
-          <div class="gift-icon">🪴</div>
-          <div class="gift-name">Decoração do Lar</div>
-          <p class="gift-desc">Quadros, vasos e detalhes que transformam a casa em lar</p>
-          <button class="btn-gift" onclick="openGift('Decoração do Lar', this)">Presentear</button>
-        </div>
-      </div>
+      <div class="gifts-grid" id="gifts-grid"></div>
 
     </div>
   </section>
 
+
   <!-- Gift modal -->
-  <div class="modal-overlay" id="gift-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onclick="closeGiftModal(event)">
-    <div class="modal-box">
-      <div class="modal-icon">🎁</div>
-      <h3 class="modal-title" id="modal-title">Que generosidade!</h3>
-      <p class="modal-text" id="modal-text"></p>
-      <div class="ornament ornament-sm" style="margin:1rem auto"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line"></div></div>
-      <button class="btn-gold modal-close" onclick="closeGiftModal()">Fechar</button>
+  <div class="gift-modal-overlay" id="gift-modal" onclick="closeGiftModal(event)">
+    <div class="gift-modal-box" id="gift-modal-box">
+      <div class="gm-img">
+        <img id="gm-img" src="" alt="" />
+      </div>
+      <div class="gm-body">
+        <p class="gm-name" id="gm-name"></p>
+        <p class="gm-price" id="gm-price"></p>
+        <div class="ornament ornament-sm" style="margin-bottom:1.2rem">
+          <div class="ornament-line"></div>
+          <div class="ornament-diamond"></div>
+          <div class="ornament-line"></div>
+        </div>
+        <form class="gm-form" id="gm-form" onsubmit="submitGift(event)">
+          <div>
+            <label for="gm-nome">Seu nome *</label>
+            <input id="gm-nome" name="nome" type="text" placeholder="Como devemos te chamar?" required />
+          </div>
+          <div>
+            <label for="gm-msg">Mensagem para os noivos <span style="text-transform:none;letter-spacing:0">(opcional)</span></label>
+            <textarea id="gm-msg" name="mensagem" placeholder="Deixe um recado carinhoso…"></textarea>
+          </div>
+          <div class="gm-actions">
+            <button type="button" class="btn-cancel" onclick="closeGiftModal()">Cancelar</button>
+            <button type="submit" class="btn-submit-gift" id="gm-submit">Enviar e Presentear 🎁</button>
+          </div>
+          <p class="gm-feedback" id="gm-feedback">Enviando…</p>
+        </form>
+      </div>
     </div>
   </div>
 
@@ -565,7 +646,85 @@
       navToggle.setAttribute('aria-expanded', 'false');
     }
 
-    /* ---- Intersection Observer (Reveal animations) ---- */
+    /* ---- Gifts ---- */
+    const MP_LINK = 'https://link.mercadopago.com.br/casamentopmeha';
+
+    const GIFTS = [
+      ['Assadeiras Retangulares', 80,  'image1.jpeg'],
+      ['Assadeiras Redondas',     80,  'image2.jpeg'],
+      ['Boleiro',                 65,  'image3.jpeg'],
+      ['Tigelas Inox',            100, 'image4.jpeg'],
+      ['Copos',                   80,  'image5.jpeg'],
+      ['Descanso de Panelas',     90,  'image6.png'],
+      ['Facas',                   400, 'image7.png'],
+      ['Faqueiro',                400, 'image8.jpeg'],
+      ['Filtro de Água',          600, 'image9.jpeg'],
+      ['Forma de Pizza',          55,  'image10.jpeg'],
+      ['Forma de Pudim',          50,  'image11.jpeg'],
+      ['Frigideiras',             115, 'image12.jpeg'],
+      ['Fruteira',                165, 'image13.jpeg'],
+      ['Jarra',                   90,  'image14.jpeg'],
+      ['Jogo Americano (4 peças)',80,  'image15.jpeg'],
+      ['Jogo de Panelas',         700, 'image16.png'],
+      ['Panela de Pressão',       250, 'image17.png'],
+      ['Pipoqueira',              170, 'image18.jpeg'],
+      ['Potes Herméticos (3pç)',  150, 'image19.jpeg'],
+      ['Porta Mantimentos',       150, 'image20.jpeg'],
+      ['Pratos',                  500, 'image21.jpeg'],
+      ['Taças de Drink',          215, 'image22.jpeg'],
+      ['Taças de Vidro',          95,  'image23.jpeg'],
+      ['Travessas de Vidro',      220, 'image24.jpeg'],
+      ['Xícaras',                 200, 'image25.jpeg'],
+      ['Aspirador de Pó',         260, 'image26.jpeg'],
+      ['Batedeira',               350, 'image27.jpeg'],
+      ['Cafeteira DolceGusto',    380, 'image28.png'],
+      ['Fogão',                  1850, 'image29.jpeg'],
+      ['Geladeira',              3500, 'image30.jpeg'],
+      ['Liquidificador',          190, 'image31.jpeg'],
+      ['Micro-ondas',             800, 'image32.jpeg'],
+      ['Sanduicheira',            100, 'image33.jpeg'],
+      ['Lava-Louça',             2700, 'image34.jpeg'],
+      ['Armários',               3000, 'image35.jpeg'],
+      ['Mesa e Cadeiras',        1500, 'image36.jpeg'],
+      ['Gabinete Pia',            500, 'image37.jpeg'],
+      ['Sofá',                   2500, 'image38.jpeg'],
+      ['TV',                     3000, 'image39.png'],
+      ['Painel',                  500, 'image40.jpeg'],
+      ['Toalhas (4 peças)',       150, 'image41.jpeg'],
+      ['Cama',                   3000, 'image42.jpeg'],
+      ['Mesa de Cabeceira',       320, 'image43.jpeg'],
+      ['Guarda-Roupa',           3000, 'image44.jpeg'],
+      ['Jogo de Lençóis (4pç)',  180, 'image45.jpeg'],
+      ['Edredom (2 peças)',       200, 'image46.jpeg'],
+      ['Cobertor (2 peças)',      150, 'image47.jpeg'],
+      ['Ar Condicionado',        2500, 'image48.jpeg'],
+      ['Máquina de Lavar',       4000, 'image49.jpeg'],
+      ['Ferro de Passar',         200, 'image50.jpeg'],
+      ['Cota Gravata',            100, 'image51.jpeg'],
+      ['Cota Sapatinho',          100, 'image52.jpeg'],
+      ['Operação Lua de Mel',     200, 'image53.jpeg'],
+    ];
+
+    function formatPrice(v) {
+      return 'R$ ' + v.toLocaleString('pt-BR');
+    }
+
+    function renderGifts() {
+      const grid = document.getElementById('gifts-grid');
+      grid.innerHTML = GIFTS.map(([name, price, img], i) => `
+        <div class="gift-card">
+          <div class="gift-img">
+            <img src="img/presentes/${img}" alt="${name}" loading="lazy" />
+          </div>
+          <div class="gift-name">${name}</div>
+          <div class="gift-price">${formatPrice(price)}</div>
+          <button class="btn-gift" onclick="openGiftModal(${i})">Presentear</button>
+        </div>
+      `).join('');
+    }
+    renderGifts();
+
+    /* ---- Intersection Observer (apenas para elementos fixos da página) ---- */
     const revealItems = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -580,25 +739,68 @@
       io.observe(el);
     });
 
-    /* ---- Gifts ---- */
-    function openGift(name, btn) {
-      document.getElementById('modal-text').textContent =
-        'Você escolheu presentear o casal com "' + name + '". ' +
-        'Entre em contato com a família para combinar os detalhes e a forma de envio. Obrigado pelo carinho! 🎁';
+    /* ---- Gift Modal ---- */
+    let currentGiftIndex = null;
+
+    function openGiftModal(i) {
+      const [name, price, img] = GIFTS[i];
+      currentGiftIndex = i;
+      document.getElementById('gm-img').src = 'img/presentes/' + img;
+      document.getElementById('gm-img').alt = name;
+      document.getElementById('gm-name').textContent = name;
+      document.getElementById('gm-price').textContent = formatPrice(price);
+      document.getElementById('gm-form').reset();
+      document.getElementById('gm-feedback').style.display = 'none';
+      document.getElementById('gm-submit').disabled = false;
+      document.getElementById('gm-submit').textContent = 'Enviar e Presentear 🎁';
       document.getElementById('gift-modal').classList.add('open');
-      btn.classList.add('chosen');
-      btn.textContent = '✓ Escolhido';
-      btn.onclick = null;
     }
 
     function closeGiftModal(e) {
-      if (!e || e.target === document.getElementById('gift-modal') || e.currentTarget.classList.contains('modal-close')) {
+      if (!e || e.target === document.getElementById('gift-modal') || e.type === 'click') {
         document.getElementById('gift-modal').classList.remove('open');
       }
     }
 
+    function submitGift(e) {
+      e.preventDefault();
+      const [name, price] = GIFTS[currentGiftIndex];
+      const nome = document.getElementById('gm-nome').value.trim();
+      const msg  = document.getElementById('gm-msg').value.trim();
+      const btn  = document.getElementById('gm-submit');
+      const fb   = document.getElementById('gm-feedback');
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+      fb.style.display = 'block';
+      fb.textContent = 'Enviando sua mensagem…';
+
+      fetch('https://formsubmit.co/ajax/pamellacaroline2001@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject: '🎁 Presente escolhido: ' + name,
+          nome: nome,
+          presente: name + ' — ' + formatPrice(price),
+          mensagem: msg || '(sem mensagem)',
+        })
+      })
+      .then(r => r.json())
+      .then(() => {
+        fb.textContent = 'Obrigado, ' + nome + '! Redirecionando para o pagamento…';
+        setTimeout(() => {
+          window.open(MP_LINK, '_blank');
+          closeGiftModal();
+        }, 1200);
+      })
+      .catch(() => {
+        window.open(MP_LINK, '_blank');
+        closeGiftModal();
+      });
+    }
+
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeGiftModal({ target: document.getElementById('gift-modal') });
+      if (e.key === 'Escape') document.getElementById('gift-modal').classList.remove('open');
     });
   </script>
 
