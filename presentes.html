@@ -780,6 +780,7 @@
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
           _subject: '🎁 Presente escolhido: ' + name,
+          _captcha: false,
           nome: nome,
           presente: name + ' — ' + formatPrice(price),
           mensagem: msg || '(sem mensagem)',
