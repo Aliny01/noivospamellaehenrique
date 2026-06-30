@@ -562,8 +562,8 @@
 
 
   <!-- Gift modal -->
-  <div class="gift-modal-overlay" id="gift-modal" onclick="closeGiftModal(event)">
-    <div class="gift-modal-box" id="gift-modal-box">
+  <div class="gift-modal-overlay" id="gift-modal" onclick="closeGiftModal()">
+    <div class="gift-modal-box" id="gift-modal-box" onclick="event.stopPropagation()">
       <div class="gm-img">
         <img id="gm-img" src="" alt="" />
       </div>
@@ -756,10 +756,8 @@
       document.getElementById('gift-modal').classList.add('open');
     }
 
-    function closeGiftModal(e) {
-      if (!e || e.target === document.getElementById('gift-modal') || e.type === 'click') {
-        document.getElementById('gift-modal').classList.remove('open');
-      }
+    function closeGiftModal() {
+      document.getElementById('gift-modal').classList.remove('open');
     }
 
     function submitGift(e) {
