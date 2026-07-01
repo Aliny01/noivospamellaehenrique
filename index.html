@@ -661,62 +661,34 @@
     }
 
     .rsvp-card {
-      max-width: 580px;
+      max-width: 520px;
       margin: 0 auto;
       background: #fff;
       border: 1px solid rgba(201,169,110,.28);
       border-radius: 4px;
       padding: 3rem 3rem 2.5rem;
       box-shadow: 0 12px 48px rgba(0,0,0,.08);
+      text-align: center;
     }
-
-    .form-field { margin-bottom: 1.4rem; }
-    .form-field label {
-      display: block;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      letter-spacing: .04em;
-      margin-bottom: .45rem;
-      color: var(--black);
+    .rsvp-info {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(.95rem, 1.8vw, 1.1rem);
+      color: var(--gray);
+      line-height: 1.8;
+      margin-bottom: 2rem;
     }
-    .form-field input,
-    .form-field select,
-    .form-field textarea {
-      width: 100%;
-      padding: .85rem 1.25rem;
-      border: 1px solid rgba(201,169,110,.45);
-      border-radius: 30px;
-      font-family: 'Lato', sans-serif;
-      font-size: .93rem;
-      color: var(--black);
-      background: var(--pearl);
-      outline: none;
-      transition: border-color .3s, box-shadow .3s;
-    }
-    .form-field input:focus,
-    .form-field select:focus,
-    .form-field textarea:focus {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(201,169,110,.12);
-    }
-    .form-field textarea {
-      border-radius: 14px;
-      height: 100px;
-      resize: none;
-    }
-    .form-field select {
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23C9A96E' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      background-size: 16px;
-      cursor: pointer;
+    .rsvp-deadline {
+      margin-top: 1.6rem;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: .88rem;
+      color: var(--gray);
     }
 
     .btn-gold {
-      display: block;
-      width: 100%;
-      padding: 1rem;
+      display: inline-block;
+      padding: 1rem 2.4rem;
       background: var(--gold);
       color: #fff;
       border: none;
@@ -727,33 +699,67 @@
       text-transform: uppercase;
       cursor: pointer;
       transition: background .3s, transform .25s, box-shadow .3s;
+      text-decoration: none;
     }
     .btn-gold:hover {
-      background: var(--blush-dark);
+      background: var(--gold-dark);
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(201,169,110,.3);
     }
 
-    .rsvp-deadline {
-      text-align: center;
-      margin-top: 1.4rem;
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: .88rem;
-      color: var(--gray);
-    }
-
-    .success-banner {
+    /* RSVP redirect modal */
+    .rsvp-modal-overlay {
       display: none;
-      margin-top: 1.2rem;
-      padding: .9rem 1.2rem;
-      background: var(--sage);
-      color: #fff;
-      border-radius: 4px;
-      text-align: center;
-      font-family: 'Lato', sans-serif;
-      font-size: .9rem;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,5,3,.5);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      backdrop-filter: blur(4px);
     }
+    .rsvp-modal-overlay.open { display: flex; }
+    .rsvp-modal-box {
+      background: #fff;
+      border: 1px solid rgba(201,169,110,.3);
+      border-radius: 6px;
+      padding: 2.5rem 2rem;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,.18);
+      animation: rsvpModalIn .35s ease;
+    }
+    @keyframes rsvpModalIn { from { opacity:0; transform:scale(.94) translateY(16px); } to { opacity:1; transform:none; } }
+    .rsvp-modal-icon { font-size: 2.2rem; margin-bottom: .8rem; }
+    .rsvp-modal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: .6rem;
+    }
+    .rsvp-modal-text {
+      font-size: .9rem;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 1.6rem;
+    }
+    .rsvp-modal-actions { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
+    .btn-outline-gold {
+      padding: .75rem 1.6rem;
+      border: 1px solid rgba(201,169,110,.4);
+      background: none;
+      border-radius: 30px;
+      font-family: 'Lato', sans-serif;
+      font-size: .76rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      cursor: pointer;
+      transition: all .25s;
+    }
+    .btn-outline-gold:hover { border-color: var(--gold); color: var(--gold-dark); }
 
     @media (max-width: 520px) {
       .rsvp-card { padding: 2rem 1.5rem; }
@@ -1270,39 +1276,32 @@
       </div>
 
       <div class="rsvp-card reveal">
-        <form id="rsvp-form" onsubmit="submitRSVP(event)" novalidate>
-          <div class="form-field">
-            <label for="rsvp-name">Nome Completo</label>
-            <input type="text" id="rsvp-name" placeholder="Seu nome completo" required autocomplete="name" />
-          </div>
-          <div class="form-field">
-            <label for="rsvp-companions">Acompanhantes</label>
-            <select id="rsvp-companions">
-              <option value="0">Somente eu</option>
-              <option value="1">+ 1 acompanhante</option>
-              <option value="2">+ 2 acompanhantes</option>
-              <option value="3">+ 3 acompanhantes</option>
-              <option value="4">+ 4 ou mais acompanhantes</option>
-            </select>
-          </div>
-          <div class="form-field">
-            <label for="rsvp-phone">WhatsApp <span style="color:var(--gray);font-size:.85em">(opcional)</span></label>
-            <input type="tel" id="rsvp-phone" placeholder="(XX) 9 XXXX-XXXX" autocomplete="tel" />
-          </div>
-          <div class="form-field">
-            <label for="rsvp-msg">Recado para os noivos <span style="color:var(--gray);font-size:.85em">(opcional)</span></label>
-            <textarea id="rsvp-msg" placeholder="Deixe uma mensagem especial…"></textarea>
-          </div>
-          <button type="submit" class="btn-gold">Confirmar Presença ✨</button>
-          <div class="success-banner" id="rsvp-success" role="alert">
-            🎉 Presença confirmada! Nos vemos em 10/10/2026!
-          </div>
-        </form>
-        <p class="rsvp-deadline">⏳ Prazo para confirmação: <strong>10 de setembro de 2026</strong></p>
+        <p class="rsvp-info">
+          A sua presença é o que tornará este dia verdadeiramente especial.<br>
+          Clique abaixo para confirmar sua presença no nosso grande dia.
+        </p>
+        <button class="btn-gold" onclick="openRsvpModal()">Confirmar Presença ✨</button>
+        <p class="rsvp-deadline">⏳ Prazo: <strong>10 de setembro de 2026</strong></p>
       </div>
 
     </div>
   </section>
+
+  <!-- RSVP redirect modal -->
+  <div class="rsvp-modal-overlay" id="rsvp-modal" onclick="closeRsvpModal()">
+    <div class="rsvp-modal-box" onclick="event.stopPropagation()">
+      <div class="rsvp-modal-icon">💌</div>
+      <h3 class="rsvp-modal-title">Confirmação de Presença</h3>
+      <p class="rsvp-modal-text">
+        Você será redirecionado para nossa página de confirmação de presença.<br>
+        Lá você poderá confirmar e registrar os seus dados.
+      </p>
+      <div class="rsvp-modal-actions">
+        <button class="btn-outline-gold" onclick="closeRsvpModal()">Cancelar</button>
+        <a class="btn-gold" href="https://noivos.casar.com/pamella-e-henrique#/rsvp" target="_blank" rel="noopener" onclick="closeRsvpModal()">Ir para confirmação</a>
+      </div>
+    </div>
+  </div>
 
   <!-- ============================================================
        MESSAGES
@@ -1462,26 +1461,10 @@
     });
 
     /* ---- RSVP form ---- */
-    function submitRSVP(e) {
-      e.preventDefault();
-      const name   = document.getElementById('rsvp-name').value.trim();
-      const comp   = document.getElementById('rsvp-companions').value;
-      const phone  = document.getElementById('rsvp-phone').value.trim();
-      const msg    = document.getElementById('rsvp-msg').value.trim();
-
-      if (!name) { document.getElementById('rsvp-name').focus(); return; }
-
-      const rsvps = JSON.parse(localStorage.getItem('ph_rsvps') || '[]');
-      rsvps.push({ name, comp, phone, msg, date: new Date().toLocaleDateString('pt-BR') });
-      localStorage.setItem('ph_rsvps', JSON.stringify(rsvps));
-
-      if (msg) addMessage(name, msg, true);
-
-      const banner = document.getElementById('rsvp-success');
-      banner.style.display = 'block';
-      e.target.reset();
-      setTimeout(() => banner.style.display = 'none', 6000);
-    }
+    /* ---- RSVP modal ---- */
+    function openRsvpModal()  { document.getElementById('rsvp-modal').classList.add('open'); }
+    function closeRsvpModal() { document.getElementById('rsvp-modal').classList.remove('open'); }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeRsvpModal(); });
 
     /* ---- Messages ---- */
     function esc(str) {
