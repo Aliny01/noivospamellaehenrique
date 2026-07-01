@@ -782,6 +782,43 @@
       padding: 2.5rem;
     }
 
+    .form-field { margin-bottom: 1.4rem; }
+    .form-field label {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      letter-spacing: .04em;
+      margin-bottom: .45rem;
+      color: var(--black);
+    }
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+      padding: .85rem 1.25rem;
+      border: 1px solid rgba(201,169,110,.45);
+      border-radius: 30px;
+      font-family: 'Lato', sans-serif;
+      font-size: .93rem;
+      color: var(--black);
+      background: var(--pearl);
+      outline: none;
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,169,110,.12);
+    }
+    .form-field textarea {
+      border-radius: 14px;
+      resize: none;
+    }
+    .btn-gold-full {
+      display: block;
+      width: 100%;
+      margin-top: .4rem;
+    }
+
     .messages-wall {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -1329,7 +1366,7 @@
             <label for="msg-text">Sua Mensagem</label>
             <textarea id="msg-text" placeholder="Escreva algo lindo para Pamella e Henrique…" required style="height:120px"></textarea>
           </div>
-          <button type="submit" class="btn-gold">Enviar Recado ✨</button>
+          <button type="submit" class="btn-gold btn-gold-full">Enviar Recado ✨</button>
         </form>
       </div>
 
