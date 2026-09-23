@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Lista de Presentes — Casamento de Pamella &amp; Henrique — 10 de Outubro de 2026, Uberlândia-MG" />
-  <title>Lista de Presentes · Pamella &amp; Henrique</title>
+  <meta name="description" content="Presentes SOS dos Noivos — Casamento de Pamella &amp; Henrique — 10 de Outubro de 2026, Uberlândia-MG" />
+  <title>Presentes SOS · Pamella &amp; Henrique</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -42,16 +42,10 @@
     img { display: block; max-width: 100%; }
     a   { text-decoration: none; color: inherit; }
 
-    /* ============================================================
-       TYPOGRAPHY HELPERS
-    ============================================================ */
     .t-serif   { font-family: 'Cormorant Garamond', serif; }
     .t-script  { font-family: 'Playfair Display', serif; font-style: italic; }
     .t-sans    { font-family: 'Lato', sans-serif; }
 
-    /* ============================================================
-       ORNAMENTAL DIVIDER
-    ============================================================ */
     .ornament {
       display: flex;
       align-items: center;
@@ -73,9 +67,6 @@
     .ornament-sm { max-width: 220px; }
     .ornament-md { max-width: 380px; }
 
-    /* ============================================================
-       SECTION HEADER
-    ============================================================ */
     .section-header { text-align: center; margin-bottom: 4rem; }
 
     .eyebrow {
@@ -105,15 +96,8 @@
       margin-top: .75rem;
     }
 
-    /* ============================================================
-       FADE-IN ANIMATIONS (Intersection Observer)
-    ============================================================ */
     .reveal       { opacity: 0; transform: translateY(32px); transition: opacity .85s ease, transform .85s ease; }
-    .reveal-left  { opacity: 0; transform: translateX(-32px); transition: opacity .85s ease, transform .85s ease; }
-    .reveal-right { opacity: 0; transform: translateX(32px); transition: opacity .85s ease, transform .85s ease; }
-    .reveal.visible, .reveal-left.visible, .reveal-right.visible {
-      opacity: 1; transform: translate(0);
-    }
+    .reveal.visible { opacity: 1; transform: translate(0); }
 
     /* ============================================================
        NAVBAR
@@ -135,14 +119,12 @@
       backdrop-filter: blur(12px);
     }
 
-    .nav-logo img {
-      height: 42px;
-    }
+    .nav-logo img { height: 42px; }
 
     .nav-links {
       list-style: none;
       display: flex;
-      gap: 2.2rem;
+      gap: 2rem;
     }
     .nav-links a {
       font-family: 'Lato', sans-serif;
@@ -155,7 +137,6 @@
     .nav-links a:hover { color: var(--gold); }
     .nav-links a.active { color: var(--gold); }
 
-    /* Hamburger */
     .nav-toggle {
       display: none;
       flex-direction: column;
@@ -171,12 +152,10 @@
       border-radius: 2px;
       transition: all .3s;
     }
-
     .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .nav-toggle.open span:nth-child(2) { opacity: 0; }
     .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* Mobile nav overlay */
     @media (max-width: 768px) {
       .nav-toggle { display: flex; }
       .nav-links {
@@ -246,17 +225,14 @@
     }
     .gift-img {
       width: 100%;
-      height: 160px;
-      background: var(--pearl);
+      height: 140px;
+      background: linear-gradient(135deg, var(--blush), var(--pearl));
       margin-bottom: 1rem;
-      overflow: hidden;
-    }
-    .gift-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-      padding: .5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.4rem;
+      line-height: 1;
     }
     .gift-card::before {
       content: '';
@@ -272,10 +248,10 @@
 
     .gift-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
+      font-size: 1.08rem;
       font-weight: 600;
       margin: 0 1rem .3rem;
-      min-height: 2.4em;
+      min-height: 2.6em;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -302,7 +278,6 @@
       transition: all .3s;
     }
     .btn-gift:hover { background: var(--gold); color: #fff; }
-    .btn-gift.chosen { background: var(--sage); border-color: var(--sage); color: #fff; cursor: default; }
 
     /* Gift modal */
     .gift-modal-overlay {
@@ -335,13 +310,14 @@
 
     .gm-img {
       width: 100%;
-      height: 180px;
-      background: var(--pearl);
+      height: 160px;
+      background: linear-gradient(135deg, var(--blush), var(--pearl));
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 4.6rem;
+      line-height: 1;
     }
-    .gm-img img { height: 100%; width: 100%; object-fit: contain; padding: 1rem; }
 
     .gm-body { padding: 1.6rem 2rem 2rem; }
 
@@ -432,22 +408,6 @@
       display: none;
     }
 
-    .btn-gold {
-      display: inline-block;
-      padding: .85rem 2.2rem;
-      border: 1px solid var(--gold);
-      background: var(--gold);
-      color: #fff;
-      border-radius: 30px;
-      font-family: 'Lato', sans-serif;
-      font-size: .78rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all .3s;
-    }
-    .btn-gold:hover { background: var(--gold-dark); border-color: var(--gold-dark); }
-
     /* ============================================================
        FOOTER
     ============================================================ */
@@ -458,10 +418,7 @@
       text-align: center;
     }
 
-    .footer-logo {
-      height: 80px;
-      margin: 0 auto 1.2rem;
-    }
+    .footer-logo { height: 80px; margin: 0 auto 1.2rem; }
 
     .footer-names {
       font-family: 'Playfair Display', serif;
@@ -503,7 +460,6 @@
       letter-spacing: .08em;
     }
 
-    /* General container */
     .container { max-width: 1060px; margin: 0 auto; }
   </style>
 </head>
@@ -523,8 +479,8 @@
       <li><a href="/#ceremony"   onclick="closeMenu()">Cerimônia</a></li>
       <li><a href="/#reception"  onclick="closeMenu()">Recepção</a></li>
       <li><a href="/#rsvp"       onclick="closeMenu()">Presença</a></li>
-      <li><a href="/presentes" class="active">Presentes</a></li>
-      <li><a href="/presentes-sos" onclick="closeMenu()">SOS 🆘</a></li>
+      <li><a href="/presentes"   onclick="closeMenu()">Presentes</a></li>
+      <li><a href="/presentes-sos" class="active">SOS 🆘</a></li>
       <li><a href="/#messages"   onclick="closeMenu()">Recados</a></li>
     </ul>
 
@@ -536,17 +492,17 @@
   <!-- ============================================================
        PAGE HEADER
   ============================================================ -->
-  <section id="page-header" aria-label="Lista de Presentes">
-    <a href="/" class="back-link reveal">← Voltar para o site</a>
+  <section id="page-header" aria-label="Presentes SOS dos Noivos">
+    <a href="/presentes" class="back-link reveal">← Voltar para a lista de presentes</a>
     <div class="section-header reveal" style="margin-bottom:0">
-      <span class="eyebrow">Capítulo V</span>
-      <h1 class="section-title">Lista de Presentes</h1>
+      <span class="eyebrow">Capítulo Bônus</span>
+      <h1 class="section-title">Presentes SOS dos Noivos 🆘</h1>
       <div class="ornament ornament-md">
         <div class="ornament-line"></div>
         <div class="ornament-diamond"></div>
         <div class="ornament-line"></div>
       </div>
-      <p class="section-sub">Cada presente é um gesto de amor em nosso novo lar</p>
+      <p class="section-sub">Porque nem só de panela vive um casamento — aqui é zoeira liberada</p>
     </div>
   </section>
 
@@ -555,19 +511,14 @@
   ============================================================ -->
   <section id="gifts">
     <div class="container">
-
       <div class="gifts-grid" id="gifts-grid"></div>
-
     </div>
   </section>
-
 
   <!-- Gift modal -->
   <div class="gift-modal-overlay" id="gift-modal" onclick="closeGiftModal()">
     <div class="gift-modal-box" id="gift-modal-box" onclick="event.stopPropagation()">
-      <div class="gm-img">
-        <img id="gm-img" src="" alt="" />
-      </div>
+      <div class="gm-img" id="gm-img"></div>
       <div class="gm-body">
         <p class="gm-name" id="gm-name"></p>
         <p class="gm-price" id="gm-price"></p>
@@ -583,7 +534,7 @@
           </div>
           <div>
             <label for="gm-msg">Mensagem para os noivos <span style="text-transform:none;letter-spacing:0">(opcional)</span></label>
-            <textarea id="gm-msg" name="mensagem" placeholder="Deixe um recado carinhoso…"></textarea>
+            <textarea id="gm-msg" name="mensagem" placeholder="Deixe um recado carinhoso (ou uma zoeira)…"></textarea>
           </div>
           <div class="gm-actions">
             <button type="button" class="btn-cancel" onclick="closeGiftModal()">Cancelar</button>
@@ -650,64 +601,50 @@
     /* ---- Gifts ---- */
     const MP_LINK = 'https://link.mercadopago.com.br/casamentopmeha';
 
+    /* [nome, preço, emoji] — misturado de propósito, sem agrupar por categoria */
     const GIFTS = [
-      ['Assadeiras Retangulares', 80,  'image1.jpeg'],
-      ['Assadeiras Redondas',     80,  'image2.jpeg'],
-      ['Boleiro',                 65,  'image3.jpeg'],
-      ['Tigelas Inox',            100, 'image4.jpeg'],
-      ['Copos',                   80,  'image5.jpeg'],
-      ['Descanso de Panelas',     90,  'image6.png'],
-      ['Filtro de Água',          600, 'image9.jpeg'],
-      ['Forma de Pizza',          55,  'image10.jpeg'],
-      ['Forma de Pudim',          50,  'image11.jpeg'],
-      ['Fruteira',                165, 'image13.jpeg'],
-      ['Jarra',                   90,  'image14.jpeg'],
-      ['Jogo Americano (4 peças)',80,  'image15.jpeg'],
-      ['Jogo de Panelas',         700, 'image16.png'],
-      ['Potes Herméticos (3pç)',  150, 'image19.jpeg'],
-      ['Porta Mantimentos',       150, 'image20.jpeg'],
-      ['Pratos',                  500, 'image21.jpeg'],
-      ['Taças de Drink',          215, 'image22.jpeg'],
-      ['Taças de Vidro',          95,  'image23.jpeg'],
-      ['Travessas de Vidro',      220, 'image24.jpeg'],
-      ['Xícaras',                 200, 'image25.jpeg'],
-      ['Aspirador de Pó',         260, 'image26.jpeg'],
-      ['Cafeteira DolceGusto',    380, 'image28.png'],
-      ['Geladeira',              3500, 'image30.jpeg'],
-      ['Liquidificador',          190, 'image31.jpeg'],
-      ['Sanduicheira',            100, 'image33.jpeg'],
-      ['Lava-Louça',             2700, 'image34.jpeg'],
-      ['Armários',               3000, 'image35.jpeg'],
-      ['Mesa e Cadeiras',        1500, 'image36.jpeg'],
-      ['Gabinete Pia',            500, 'image37.jpeg'],
-      ['Sofá',                   2500, 'image38.jpeg'],
-      ['TV',                     3000, 'image39.png'],
-      ['Painel',                  500, 'image40.jpeg'],
-      ['Toalhas (4 peças)',       150, 'image41.jpeg'],
-      ['Cama',                   3000, 'image42.jpeg'],
-      ['Mesa de Cabeceira',       320, 'image43.jpeg'],
-      ['Guarda-Roupa',           3000, 'image44.jpeg'],
-      ['Jogo de Lençóis (4pç)',  180, 'image45.jpeg'],
-      ['Edredom (2 peças)',       200, 'image46.jpeg'],
-      ['Cobertor (2 peças)',      150, 'image47.jpeg'],
-      ['Ar Condicionado',        2500, 'image48.jpeg'],
-      ['Ferro de Passar',         200, 'image50.jpeg'],
-      ['Cota Gravata',            100, 'image51.jpeg'],
-      ['Cota Sapatinho',          100, 'image52.jpeg'],
-      ['Operação Lua de Mel',     200, 'image53.jpeg'],
+      ['Cota Uber do Aeroporto',                                          90.00,   '🚕'],
+      ['Curso de Culinária para a Noiva',                                 300.90,  '🍳'],
+      ['Vale Desculpa Pronta (Usar Quando Errar Feio)',                   150.00,  '🙏'],
+      ['Seguro para o Carro da Noiva',                                    577.98,  '🚗'],
+      ['Kit Choro no Banho',                                              68.20,   '🚿'],
+      ['Sofá para o Noivo Dormir Após uma Discussão',                     1590.00, '🛋️'],
+      ['Cota Wi-Fi pra Não Brigar por Causa de Buffering',                120.50,  '📶'],
+      ['Chinelinhos Novos para a Lua de Mel',                             344.78,  '🩴'],
+      ['Manicure de Emergência pra Crise de Ansiedade',                   120.00,  '💅'],
+      ['Terapia para os Noivos Não Surtarem nos Preparativos',            380.00,  '🧘'],
+      ['Cota Videogame pra Descontar o Stress',                           430.00,  '🎮'],
+      ['Ajude com a Taxa de Mala Extra para a Lua de Mel',                347.00,  '🧳'],
+      ['Vale Corte de Cabelo Antes da Sogra Ver',                         75.50,   '💇'],
+      ['Cota Protetor Solar Fator 500',                                   89.00,   '☀️'],
+      ['Kit Primeiros Socorros pra Primeira Briga de Casados',            175.25,  '🩹'],
+      ['Moujaro para a Noiva',                                            1115.30, '💉'],
+      ['Vale Sorvete "Eu Mereço"',                                        45.70,   '🍦'],
+      ['Cota Delivery pra Semana que Nenhum dos Dois Quer Cozinhar',      210.60,  '🍔'],
+      ['Seguro Viagem Contra Bagagem Extraviada',                         320.00,  '✈️'],
+      ['Cota Remédio pra Ressaca do Brinde de Casamento',                 55.00,   '💊'],
+      ['Kit Sobrevivência pro Chá de Panela',                             99.99,   '🎉'],
+      ['Terapia de Casal Nível 2 (Pra Quando a Nível 1 Não For Suficiente)', 480.00, '💬'],
+      ['Ração de Emergência pro Noivo Não Passar Fome Enquanto Ela se Arruma', 58.30, '🍕'],
+      ['Vale Sunga/Biquíni Novo pra Foto do Instagram',                   165.30,  '👙'],
+      ['Curso "Como Não Falar Besteira na Hora H"',                       210.00,  '🤐'],
+      ['Seguro Contra Discussão por Causa de App de Trânsito',            199.90,  '🗺️'],
+      ['Ajuda de Custo pro Primeiro Susto do Cartão de Crédito',          500.00,  '💳'],
+      ['Vale um Dia Sem Fazer Nada (Nem Tarefa de Casa)',                 130.00,  '🛌'],
+      ['Cota Primeira Conta de Luz de Casado',                            280.00,  '💡'],
+      ['Vale Chá de Camomila pra Aguentar os Preparativos',               89.90,   '🍵'],
+      ['Sessão de Massagem Pós-Organização do Casamento',                 250.40,  '💆'],
     ];
 
     function formatPrice(v) {
-      return 'R$ ' + v.toLocaleString('pt-BR');
+      return 'R$ ' + v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
     function renderGifts() {
       const grid = document.getElementById('gifts-grid');
-      grid.innerHTML = GIFTS.map(([name, price, img], i) => `
+      grid.innerHTML = GIFTS.map(([name, price, emoji], i) => `
         <div class="gift-card">
-          <div class="gift-img">
-            <img src="img/presentes/${img}" alt="${name}" loading="lazy" />
-          </div>
+          <div class="gift-img">${emoji}</div>
           <div class="gift-name">${name}</div>
           <div class="gift-price">${formatPrice(price)}</div>
           <button class="btn-gift" onclick="openGiftModal(${i})">Presentear</button>
@@ -716,8 +653,8 @@
     }
     renderGifts();
 
-    /* ---- Intersection Observer (apenas para elementos fixos da página) ---- */
-    const revealItems = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    /* ---- Intersection Observer ---- */
+    const revealItems = document.querySelectorAll('.reveal');
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -735,10 +672,9 @@
     let currentGiftIndex = null;
 
     function openGiftModal(i) {
-      const [name, price, img] = GIFTS[i];
+      const [name, price, emoji] = GIFTS[i];
       currentGiftIndex = i;
-      document.getElementById('gm-img').src = 'img/presentes/' + img;
-      document.getElementById('gm-img').alt = name;
+      document.getElementById('gm-img').textContent = emoji;
       document.getElementById('gm-name').textContent = name;
       document.getElementById('gm-price').textContent = formatPrice(price);
       document.getElementById('gm-form').reset();
@@ -769,7 +705,7 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          _subject: '🎁 Presente escolhido: ' + name,
+          _subject: '🆘 Presente SOS escolhido: ' + name,
           _captcha: false,
           nome: nome,
           presente: name + ' — ' + formatPrice(price),
