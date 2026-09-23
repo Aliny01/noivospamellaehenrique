@@ -233,6 +233,12 @@
       justify-content: center;
       font-size: 3.4rem;
       line-height: 1;
+      overflow: hidden;
+    }
+    .gift-img.has-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     .gift-card::before {
       content: '';
@@ -317,6 +323,12 @@
       justify-content: center;
       font-size: 4.6rem;
       line-height: 1;
+      overflow: hidden;
+    }
+    .gm-img.has-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .gm-body { padding: 1.6rem 2rem 2rem; }
@@ -601,35 +613,35 @@
     /* ---- Gifts ---- */
     const MP_LINK = 'https://link.mercadopago.com.br/casamentopmeha';
 
-    /* [nome, preço, emoji] — misturado de propósito, sem agrupar por categoria */
+    /* [nome, preço, emoji, foto?] — misturado de propósito, sem agrupar por categoria */
     const GIFTS = [
       ['Cota Uber do Aeroporto',                                          90.00,   '🚕'],
       ['Curso de Culinária para a Noiva',                                 300.90,  '🍳'],
-      ['Vale Desculpa Pronta (Usar Quando Errar Feio)',                   150.00,  '🙏'],
+      ['Vale Desculpa Pronta (Usar Quando Errar Feio)',                   150.00,  '🙏', 'desculpa.jpeg'],
       ['Seguro para o Carro da Noiva',                                    577.98,  '🚗'],
       ['Kit Choro no Banho',                                              68.20,   '🚿'],
-      ['Sofá para o Noivo Dormir Após uma Discussão',                     1590.00, '🛋️'],
+      ['Sofá para o Noivo Dormir Após uma Discussão',                     1590.00, '🛋️', 'sofa.jpeg'],
       ['Cota Wi-Fi pra Não Brigar por Causa de Buffering',                120.50,  '📶'],
-      ['Chinelinhos Novos para a Lua de Mel',                             344.78,  '🩴'],
-      ['Manicure de Emergência pra Crise de Ansiedade',                   120.00,  '💅'],
-      ['Terapia para os Noivos Não Surtarem nos Preparativos',            380.00,  '🧘'],
-      ['Cota Videogame pra Descontar o Stress',                           430.00,  '🎮'],
-      ['Ajude com a Taxa de Mala Extra para a Lua de Mel',                347.00,  '🧳'],
-      ['Vale Corte de Cabelo Antes da Sogra Ver',                         75.50,   '💇'],
+      ['Chinelinhos Novos para a Lua de Mel',                             344.78,  '🩴', 'chinelo.jpeg'],
+      ['Manicure de Emergência pra Crise de Ansiedade',                   120.00,  '💅', 'manicure.jpeg'],
+      ['Terapia para os Noivos Não Surtarem nos Preparativos',            380.00,  '🧘', 'terapia.jpeg'],
+      ['Cota Videogame pra Descontar o Stress',                           430.00,  '🎮', 'videogame.jpeg'],
+      ['Ajude com a Taxa de Mala Extra para a Lua de Mel',                347.00,  '🧳', 'bagagem.jpeg'],
+      ['Vale Corte de Cabelo Antes da Sogra Ver',                         75.50,   '💇', 'cabelo.jpeg'],
       ['Cota Protetor Solar Fator 500',                                   89.00,   '☀️'],
-      ['Kit Primeiros Socorros pra Primeira Briga de Casados',            175.25,  '🩹'],
+      ['Kit Primeiros Socorros pra Primeira Briga de Casados',            175.25,  '🩹', 'briga.jpeg'],
       ['Moujaro para a Noiva',                                            1115.30, '💉'],
-      ['Vale Sorvete "Eu Mereço"',                                        45.70,   '🍦'],
+      ['Vale Sorvete "Eu Mereço"',                                        45.70,   '🍦', 'sorvete.jpeg'],
       ['Cota Delivery pra Semana que Nenhum dos Dois Quer Cozinhar',      210.60,  '🍔'],
       ['Seguro Viagem Contra Bagagem Extraviada',                         320.00,  '✈️'],
-      ['Cota Remédio pra Ressaca do Brinde de Casamento',                 55.00,   '💊'],
+      ['Cota Remédio pra Ressaca do Brinde de Casamento',                 55.00,   '💊', 'ressaca.jpeg'],
       ['Kit Sobrevivência pro Chá de Panela',                             99.99,   '🎉'],
       ['Terapia de Casal Nível 2 (Pra Quando a Nível 1 Não For Suficiente)', 480.00, '💬'],
       ['Ração de Emergência pro Noivo Não Passar Fome Enquanto Ela se Arruma', 58.30, '🍕'],
       ['Vale Sunga/Biquíni Novo pra Foto do Instagram',                   165.30,  '👙'],
       ['Curso "Como Não Falar Besteira na Hora H"',                       210.00,  '🤐'],
-      ['Seguro Contra Discussão por Causa de App de Trânsito',            199.90,  '🗺️'],
-      ['Ajuda de Custo pro Primeiro Susto do Cartão de Crédito',          500.00,  '💳'],
+      ['Seguro Contra Discussão por Causa de App de Trânsito',            199.90,  '🗺️', 'transito.jpeg'],
+      ['Ajuda de Custo pro Primeiro Susto do Cartão de Crédito',          500.00,  '💳', 'cartao.jpeg'],
       ['Vale um Dia Sem Fazer Nada (Nem Tarefa de Casa)',                 130.00,  '🛌'],
       ['Cota Primeira Conta de Luz de Casado',                            280.00,  '💡'],
       ['Vale Chá de Camomila pra Aguentar os Preparativos',               89.90,   '🍵'],
@@ -640,11 +652,17 @@
       return 'R$ ' + v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
+    function giftImgHTML(emoji, foto) {
+      return foto
+        ? `<img src="img/presentes-sos/${foto}" alt="" loading="lazy" />`
+        : emoji;
+    }
+
     function renderGifts() {
       const grid = document.getElementById('gifts-grid');
-      grid.innerHTML = GIFTS.map(([name, price, emoji], i) => `
+      grid.innerHTML = GIFTS.map(([name, price, emoji, foto], i) => `
         <div class="gift-card">
-          <div class="gift-img">${emoji}</div>
+          <div class="gift-img${foto ? ' has-photo' : ''}">${giftImgHTML(emoji, foto)}</div>
           <div class="gift-name">${name}</div>
           <div class="gift-price">${formatPrice(price)}</div>
           <button class="btn-gift" onclick="openGiftModal(${i})">Presentear</button>
@@ -672,9 +690,11 @@
     let currentGiftIndex = null;
 
     function openGiftModal(i) {
-      const [name, price, emoji] = GIFTS[i];
+      const [name, price, emoji, foto] = GIFTS[i];
       currentGiftIndex = i;
-      document.getElementById('gm-img').textContent = emoji;
+      const gmImg = document.getElementById('gm-img');
+      gmImg.classList.toggle('has-photo', !!foto);
+      gmImg.innerHTML = giftImgHTML(emoji, foto);
       document.getElementById('gm-name').textContent = name;
       document.getElementById('gm-price').textContent = formatPrice(price);
       document.getElementById('gm-form').reset();
